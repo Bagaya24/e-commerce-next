@@ -3,8 +3,9 @@
 import { useCartStore } from "@/store/cart-store";
 
 export default function CartButton() {
-  const totalItems = useCartStore((s) => s.totalItems);
-  const count = totalItems();
+  const count = useCartStore((s) =>
+    s.items.reduce((sum, i) => sum + i.quantity, 0)
+  );
 
   return (
     <button className="relative rounded-full bg-black p-2 text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200">
